@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
   // --- Constants ---
-  const TYPING_CONFIG = {
+  let TYPING_CONFIG = {
     speed: 70,
     deletingSpeed: 30,
     pauseBeforeDelete: 1200,
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     ]
   };
 
-  const MATRIX_CONFIG = {
+  let MATRIX_CONFIG = {
     fontSize: 18,
     colors: ["#00ffae", "#00cfff", "#ff00c8", "#ffea00", "#00ff41"],
     fadeOpacity: 0.08,
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
   (function() {
 
     // --- Typing Effect ---
-    const typedText = document.getElementById('typed-text');
+    let typedText = document.getElementById('typed-text');
     if (typedText) {
       let typingState = {
         roleIdx: 0,
