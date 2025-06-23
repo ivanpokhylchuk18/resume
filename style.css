@@ -800,3 +800,13 @@ footer {
     margin: 0 auto;
   }
 }
+
+.experience-photo {
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #00ffae44;
+  border: 3px solid #00ffae;
+  background: #23283a;
+}
