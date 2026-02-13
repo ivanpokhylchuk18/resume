@@ -307,8 +307,8 @@ header p {
 }
 .menu-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
 }
 .menu-box {
   display: flex;
@@ -470,6 +470,10 @@ section h2 {
 }
 .about-text {
   flex: 1;
+}
+.about-text p {
+  margin-bottom: 16px;
+  line-height: 1.6;
 }
 @media (max-width: 700px) {
   .about-flex {
@@ -749,6 +753,7 @@ footer {
   .profile-photo img { width: 80px; height: 80px; }
 }
 
+/* === Education Section === */
 .education-title {
   text-align: center;
   margin-bottom: 32px;
@@ -801,12 +806,64 @@ footer {
   }
 }
 
+/* === Experience Section === */
+.experience-title {
+  text-align: center;
+  margin-bottom: 32px;
+  color: #00ffae;
+}
+
+.experience-item {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 36px;
+  padding: 24px;
+  background: rgba(35, 40, 58, 0.3);
+  border-radius: 18px;
+  border: 2px solid rgba(0, 255, 174, 0.2);
+  transition: all 0.3s ease;
+}
+
+.experience-item:hover {
+  border-color: #00ffae;
+  background: rgba(35, 40, 58, 0.5);
+  box-shadow: 0 4px 24px rgba(0, 255, 174, 0.2);
+}
+
 .experience-photo {
-  width: 240px;
-  height: 240px;
+  width: 200px;
+  height: 200px;
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 0 4px 24px #00ffae44;
   border: 3px solid #00ffae;
   background: #23283a;
+  flex-shrink: 0;
+}
+
+.experience-info {
+  flex: 1;
+}
+
+.experience-info h3 {
+  color: #00ffae;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.experience-info p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .experience-item {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+  .experience-photo {
+    margin: 0 auto;
+  }
 }

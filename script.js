@@ -112,6 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(checkLoad);
   }
 
+  // --- Home Button ---
+  const homeBtn = document.getElementById('home-btn');
+  if (homeBtn) {
+    homeBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // --- Music Toggle ---
   const music = document.getElementById('bg-music');
   const musicBtn = document.getElementById('music-toggle');
   if (music && musicBtn) {
@@ -127,31 +136,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Hardware-Accelerated Modal ---
-  const modal = document.getElementById('videoModal');
-  if (modal) {
-    const video = document.getElementById('hobbyVideo');
-    modal.style.willChange = 'transform, opacity';
-
-    document.getElementById('hobbyVideoThumb')?.addEventListener('click', () => {
-      modal.classList.add('show');
-      video.play().catch(e => console.log('Autoplay prevented:', e));
-    });
-
-    modal.addEventListener('click', (e) => {
-      if (e.target === modal || e.target.closest('#closeModal')) {
-        modal.classList.remove('show');
-        video.pause();
-      }
+  // --- Contact Form Handler ---
+  const contactForm = document.getElementById('contact-form');
+  const formMessage = document.getElementById('form-message');
+  
+  if (contactForm && formMessage) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      // Get form data
+      const formData = new FormData(contactForm);
+      const name = formData.get('name');
+      const email = formData.get('email');
+      const message = formData.get('message');
+      
+      // Show success message (since there's no backend)
+      formMessage.textContent = `Thanks ${name}! Your message has been received. I'll get back to you at ${email} soon!`;
+      formMessage.style.color = '#00ffae';
+      
+      // Reset form
+      contactForm.reset();
+      
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        formMessage.textContent = '';
+      }, 5000);
     });
   }
 
-  // --- Debounced Scroll Effects ---
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const now = performance.now();
-    if (now - lastScroll > 100) {
-      lastScroll = now;
-    }
-  }, { passive: true });
+  // --- Smooth Scroll for Navigation ---
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href !== '#' && href.length > 1) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
 });
