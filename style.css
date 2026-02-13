@@ -531,6 +531,100 @@ section h2 {
   text-align: center;
 }
 
+/* Improved styling for About section: card layout, typography, hobbies columns */
+.about-intro p {
+  font-size: 1.18rem;
+  line-height: 1.75;
+  color: #d6f6ef;
+  max-width: 720px;
+  margin: 0 auto;
+  text-shadow: none;
+}
+
+.about-flex {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  max-width: 900px;
+  margin: 0 auto 32px auto;
+  padding: 28px;
+  background: linear-gradient(180deg, rgba(10,14,20,0.35), rgba(24,28,36,0.45));
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.55), 0 6px 24px rgba(0,255,174,0.06);
+}
+
+.about-photo-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.about-photo-img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.about-text {
+  flex: 1;
+  padding-left: 18px;
+  border-left: 2px solid rgba(0,255,174,0.06);
+}
+
+.about-text p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+  color: #dceff0;
+}
+
+.about-text h2 {
+  margin-top: 8px;
+  color: #ffea00;
+}
+
+.about-text ul {
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding-left: 0;
+  columns: 2;
+  column-gap: 24px;
+}
+
+.about-text ul li {
+  break-inside: avoid-column;
+  margin-bottom: 8px;
+}
+
+.about-text ul li::before {
+  content: '▹';
+  color: #00ffae;
+  display: inline-block;
+  width: 20px;
+  margin-left: -20px;
+}
+
+@media (max-width: 700px) {
+  .about-flex {
+    flex-direction: column;
+    gap: 18px;
+    padding: 18px;
+    text-align: center;
+  }
+  .about-text {
+    padding-left: 0;
+    border-left: none;
+  }
+  .about-photo-img {
+    width: 150px;
+    height: 150px;
+  }
+  .about-text ul { columns: 1; }
+}
+
 .about-divider {
   border: none;
   border-top: 2px solid #00ffae;
