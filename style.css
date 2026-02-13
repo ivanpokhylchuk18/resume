@@ -448,6 +448,31 @@ header p {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 20px;
 }
+/* Layout: three columns on wide viewports; place items 5 & 6 under Education and Experience */
+@media (min-width: 900px) {
+  .menu-grid { grid-template-columns: repeat(3, 1fr); }
+  .menu-grid .menu-box:nth-child(5) {
+    grid-column: 2;
+    justify-self: center;
+    max-width: 420px;
+    width: 100%;
+  }
+  .menu-grid .menu-box:nth-child(6) {
+    grid-column: 3;
+    justify-self: center;
+    max-width: 420px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .menu-grid .menu-box:nth-child(5),
+  .menu-grid .menu-box:nth-child(6) {
+    max-width: none;
+    width: 100%;
+    justify-self: stretch;
+  }
+}
 .menu-box {
   display: flex;
   flex-direction: column;
