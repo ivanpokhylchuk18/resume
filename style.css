@@ -145,48 +145,186 @@ body.light-mode .download-btn:hover {
   color: #fff !important;
 }
 
-/* === Loader === */
-#loader {
+/* === Interactive Hacking Terminal === */
+#terminal-loader {
   position: fixed;
   inset: 0;
-  background: #181c24;
+  background: #0a0e14;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: opacity 1s ease;
+  transition: opacity 0.5s ease;
 }
-.loader-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #00ffae;
+
+.terminal-container {
+  width: 90%;
+  max-width: 800px;
+  background: #1a1e26;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 255, 174, 0.3);
+  border: 2px solid #00ffae;
+  overflow: hidden;
+  animation: terminal-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes terminal-glow {
+  0% { box-shadow: 0 8px 32px rgba(0, 255, 174, 0.3); }
+  100% { box-shadow: 0 8px 48px rgba(0, 255, 174, 0.6); }
+}
+
+.terminal-header {
   background: #23283a;
-  box-shadow: 0 4px 24px #00ffae44, 0 0 0 8px #23283a;
-  animation: loader-spin 1.5s linear infinite;
-  /* For loader exit animation: */
-  transition:
-    transform 0.9s cubic-bezier(.4,2,.6,1),
-    top 0.9s cubic-bezier(.4,2,.6,1),
-    left 0.9s cubic-bezier(.4,2,.6,1),
-    opacity 0.6s;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%) scale(1);
-  z-index: 100;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 2px solid #00ffae;
 }
-@keyframes loader-spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1);}
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1);}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
 }
-.loader-img.loader-exit {
-  animation: none;
-  top: 56px; /* Adjust to match your header image's top position */
-  left: 50%;
-  transform: translate(-50%, 0) scale(1.1);
-  opacity: 1;
+
+.terminal-dot.red { background: #ff5f56; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #27c93f; }
+
+.terminal-title {
+  color: #00ffae;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.9rem;
+  margin-left: auto;
+  font-weight: bold;
+}
+
+.terminal-body {
+  padding: 24px;
+  min-height: 400px;
+  max-height: 500px;
+  background: #0a0e14;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.95rem;
+  color: #00ffae;
+  line-height: 1.6;
+  position: relative;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#terminal-output {
+  flex: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 12px;
+}
+
+.terminal-input-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 255, 174, 0.2);
+}
+
+.terminal-prompt {
+  color: #00cfff;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00ffae;
+  font-family: 'Fira Mono', monospace;
+  font-size: 0.95rem;
+  padding: 0;
+  caret-color: #00ffae;
+}
+
+.terminal-input::selection {
+  background: #00ffae;
+  color: #0a0e14;
+}
+
+.terminal-cursor-input {
+  display: none;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  background: #00ffae;
+  color: #0a0e14;
+  padding: 0 4px;
+  margin-left: 2px;
+  animation: cursor-blink 0.8s infinite;
+  font-weight: bold;
+}
+
+@keyframes cursor-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.boot-line {
+  margin: 4px 0;
+}
+
+.boot-success {
+  color: #27c93f;
+}
+
+.boot-warning {
+  color: #ffbd2e;
+}
+
+.boot-error {
+  color: #ff5f56;
+}
+
+.boot-info {
+  color: #00cfff;
+}
+
+.boot-progress {
+  display: inline-block;
+  color: #00ffae;
+}
+
+.command-entered {
+  color: #ffffff;
+}
+
+.ascii-art {
+  color: #00ffae;
+  font-size: 0.7rem;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .terminal-container {
+    width: 95%;
+  }
+  .terminal-body {
+    padding: 16px;
+    font-size: 0.85rem;
+    min-height: 350px;
+  }
+  .terminal-prompt {
+    font-size: 0.85rem;
+  }
+  .terminal-input {
+    font-size: 0.85rem;
+  }
 }
 
 /* === Floating Navigation === */

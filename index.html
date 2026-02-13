@@ -12,9 +12,43 @@
 
 <canvas id="matrix-bg"></canvas>
 
-<!-- Loader -->
-<div id="loader">
-  <img src="img/IMG_0033.jpeg" alt="Loading Ivan Pokhylchuk" class="loader-img" />
+<!-- Interactive Hacking Terminal -->
+<div id="terminal-loader">
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <span class="terminal-dot red"></span>
+      <span class="terminal-dot yellow"></span>
+      <span class="terminal-dot green"></span>
+      <span class="terminal-title">root@ivan-portfolio:~#</span>
+    </div>
+    <div class="terminal-body">
+      <div id="terminal-output">
+        <div class="boot-line boot-success">
+░▒▓ IVAN PORTFOLIO SECURITY SYSTEM v2.0 ▓▒░
+        </div>
+        <div class="boot-line">
+═══════════════════════════════════════════
+        </div>
+        <div class="boot-line boot-warning">
+⚠ WARNING: Unauthorized access detected!
+        </div>
+        <div class="boot-line">
+This portfolio is protected. Enter the correct command to proceed.
+        </div>
+        <div class="boot-line boot-info">
+Type 'help' for available commands.
+        </div>
+        <div class="boot-line">
+═══════════════════════════════════════════
+        </div>
+      </div>
+      <div class="terminal-input-line">
+        <span class="terminal-prompt">visitor@portfolio:~$</span>
+        <input type="text" id="terminal-input" class="terminal-input" autocomplete="off" spellcheck="false" autofocus>
+        <span class="terminal-cursor-input">_</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <nav class="floating-nav" aria-label="Quick Access Navigation">
