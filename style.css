@@ -503,7 +503,7 @@ header p {
 
 /* === Section Styling === */
 section {
-  max-width: 700px;
+  max-width: 900px;
   margin: 32px auto;
   border-radius: 18px;
   padding: 32px 28px;
@@ -512,6 +512,9 @@ section {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.7s, transform 0.7s;
+}
+#about {
+  max-width: 960px;
 }
 section.visible {
   opacity: 1;
@@ -710,11 +713,96 @@ section h2 {
   border: none;
 }
 .close:hover { color: #ffea00; background: rgba(24,28,36,0.95);}
+/* === Scroll Progress Bar === */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #00ffae, #00cfff, #ff00c8);
+  z-index: 99999;
+  transition: width 0.1s linear;
+}
+
+/* === Back to Top Button === */
+#back-to-top {
+  position: fixed;
+  bottom: 32px;
+  right: 24px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #23283aee;
+  color: #00ffae;
+  border: 2px solid #00ffae;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s, background 0.2s;
+  box-shadow: 0 2px 16px #00ffae33;
+}
+#back-to-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+#back-to-top:hover {
+  background: #00ffae;
+  color: #23283a;
+  transform: scale(1.1) translateY(-2px);
+}
+
+/* === Stats Section === */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+.stat-card {
+  background: rgba(35, 40, 58, 0.5);
+  border: 2px solid rgba(0, 255, 174, 0.3);
+  border-radius: 16px;
+  padding: 28px 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.stat-card:hover {
+  border-color: #00ffae;
+  background: rgba(0, 255, 174, 0.08);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px #00ffae33;
+}
+.stat-number {
+  display: block;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #00ffae;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-label {
+  font-size: 0.88rem;
+  color: #a0b4c0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* === Footer Sub === */
+.footer-sub {
+  font-size: 0.8em;
+  opacity: 0.5;
+  margin-top: 4px;
+}
+
 .about-photo-col {
   display: flex;
   flex-direction: column;
-  gap: 140px;
+  gap: 24px;
   align-items: center;
+  flex-shrink: 0;
 }
 .about-photo-img {
   width: 170px;
@@ -825,7 +913,8 @@ section h2 {
   margin-top: 18px;
 }
 .skill {
-  display: flex;
+  display: grid;
+  grid-template-columns: 28px 160px 1fr;
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
@@ -838,11 +927,10 @@ section h2 {
   filter: drop-shadow(0 2px 8px #00ffae44);
 }
 .skill span {
-  display: block;
-  margin-bottom: 4px;
   color: #00ffae;
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
+  white-space: nowrap;
 }
 .skill-learning {
   opacity: 0.85;
@@ -873,17 +961,80 @@ section h2 {
   background: linear-gradient(90deg, #00ffae 60%, #00cfff 100%);
   height: 100%;
   border-radius: 8px;
-  transition: width 1.2s cubic-bezier(.4,2,.6,1);
+  width: 0%;
+  transition: width 1.4s cubic-bezier(.4,2,.6,1);
 }
 
 /* === Projects === */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
 .project {
-  background: #181c24;
+  background: rgba(24, 28, 36, 0.7);
   border-left: 4px solid #00ffae;
-  padding: 16px 18px;
-  border-radius: 10px;
-  margin-bottom: 18px;
-  box-shadow: 0 1px 4px #00ffae22;
+  border: 1px solid rgba(0,255,174,0.2);
+  border-left: 4px solid #00ffae;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 0;
+  box-shadow: 0 1px 4px #00ffae11;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+.project:hover {
+  transform: translateY(-4px);
+  border-color: #00ffae;
+  box-shadow: 0 8px 32px #00ffae22;
+  background: rgba(35, 40, 58, 0.8);
+}
+.project-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.project-icon {
+  font-size: 1.5rem;
+}
+.project h3 {
+  margin: 0;
+  color: #00ffae;
+  font-size: 1.1rem;
+}
+.project p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+  line-height: 1.6;
+  flex: 1;
+}
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tag {
+  background: rgba(0,255,174,0.1);
+  color: #00ffae;
+  border: 1px solid rgba(0,255,174,0.3);
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-family: 'Fira Mono', monospace;
+}
+.project-link {
+  color: #00cfff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s;
+  margin-top: auto;
+}
+.project-link:hover {
+  color: #00ffae;
+  text-decoration: none;
 }
 
 /* === Gallery === */

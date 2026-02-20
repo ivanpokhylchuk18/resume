@@ -354,6 +354,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }
 
+  // --- Scroll Progress Bar ---
+  const scrollBar = document.getElementById('scroll-progress');
+  const backToTop = document.getElementById('back-to-top');
+
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollBar) scrollBar.style.width = (scrollTop / docHeight * 100) + '%';
+    if (backToTop) {
+      backToTop.classList.toggle('visible', scrollTop > 400);
+    }
+  });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  // --- Animated Skill Bars (trigger on scroll) ---
+  // Store original widths and backgrounds from inline styles, then reset width to 0
+  document.querySelectorAll('.progress').forEach(bar => {
+    bar.dataset.targetWidth = bar.style.width || '0%';
+    bar.dataset.targetBg = bar.style.background || '';
+    bar.style.width = '0%';
+  });
+
+  const skillsSection = document.getElementById('skills');
+  if (skillsSection) {
+    let barsAnimated = false;
+    const skillObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !barsAnimated) {
+        barsAnimated = true;
+        document.querySelectorAll('.progress').forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.targetWidth;
+            if (bar.dataset.targetBg) bar.style.background = bar.dataset.targetBg;
+          }, 100 + i * 60); // stagger each bar slightly
+        });
+      }
+    }, { threshold: 0.15 });
+    skillObserver.observe(skillsSection);
+  }
+
+  // --- Stats Counter Animation ---
+  const statsSection = document.getElementById('stats');
+  if (statsSection) {
+    const counters = statsSection.querySelectorAll('.stat-number');
+    let counted = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !counted) {
+        counted = true;
+        counters.forEach(counter => {
+          const target = parseInt(counter.dataset.target);
+          let current = 0;
+          const step = Math.ceil(target / 40);
+          const interval = setInterval(() => {
+            current = Math.min(current + step, target);
+            counter.textContent = current;
+            if (current >= target) clearInterval(interval);
+          }, 40);
+        });
+      }
+    }, { threshold: 0.4 });
+    statsObserver.observe(statsSection);
+  }
+
   // --- Home Button ---
   const homeBtn = document.getElementById('home-btn');
   if (homeBtn) {
